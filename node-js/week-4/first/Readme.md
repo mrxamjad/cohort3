@@ -1,0 +1,1 @@
+## nmp init -y
