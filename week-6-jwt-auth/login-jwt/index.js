@@ -25,26 +25,35 @@ app.post("/signup",(req,res)=>{
     const usepass=req.body.password
 
     const user={username,usepass}
-    users.push(user)
+    users.append(user)
     res.json({
-        message:"User created successfully"
+        message:"User created successfully "
     })
     
 })
 
 //Sign in
-app.post("/signin",(res,req)=>{
+app.post("/signin",(req,res)=>{
+
+    console.log(req.body.username)
+    console.log(req.body.password)
+
     const username= req.body.username
     const password=req.body.password
 
     const user={ username, password}
 
-    if ( users.includes(user)){
+    for(let i=0; i<users.length; i++){
+        if( users[i]==user){
+            res.send("You have successfully login")
+            return
+        }
 
-        res.send(" You have successfully login")
-    }else{
-        res.send("You accound does not exit")
     }
+
+    res.send("You account doesn't exist")
+
+    
 })
 
 
